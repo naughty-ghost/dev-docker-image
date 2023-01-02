@@ -18,12 +18,14 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
       id-token: write
+    defaults:
+      run:
+        working-directory: ionic
 
     steps:
       - name: Checkout repository
