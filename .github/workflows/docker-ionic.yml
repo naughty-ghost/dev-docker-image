@@ -56,7 +56,6 @@ jobs:
         run: echo "tag=ghcr.io/$REPOSITORY-$IMAGE:$(./release latest --any | tr -d '\n')" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v3
         run: |
           docker buildx create --use
           docker buildx build \
