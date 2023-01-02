@@ -13,7 +13,6 @@ env:
   REGISTRY: ghcr.io
   REPOSITORY: ${{ github.repository }}
   IMAGE: ionic
-  USER_NAME: ms-naughty-ghost
 
 
 jobs:
@@ -54,12 +53,13 @@ jobs:
 
       - name: Extract Docker metadata
         id: meta
-        run: echo "tag=ghcr.io/$USER_NAME/$REPOSITORY-$IMAGE:$(./release latest --any | tr -d '\n')" >> $GITHUB_OUTPUT
+        run: echo "tag=ghcr.io/$REPOSITORY-$IMAGE:$(./release latest --any | tr -d '\n')" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
-        with:
-          context: .
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: ${{ steps.meta.outputs.tag }}
+        run: |
+          docker buildx create --use
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            --tag ${{ steps.meta.outputs.tag }} \
+            --push .
