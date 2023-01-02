@@ -50,10 +50,14 @@ jobs:
           wget -q https://github.com/tomodian/release/releases/download/0.13.0/release_linux_amd64.zip -O release.zip
           unzip release.zip
 
+      - name: Extract Docker metadata
+        id: meta
+        run: echo "::set-output name=tag::ghcr.io/$USER_NAME/$REPOSITORY-$IMAGE:$(./release latest --any | tr -d '\n')"
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          platform: linux/amd64,linux/arm64
-          tags: ghcr.io/$USER_NAME/$REPOSITORY-$IMAGE:$(./release latest --any | tr -d '\n')
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ steps.meta.outputs.tag }}
