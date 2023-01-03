@@ -48,7 +48,7 @@ jobs:
 
       - name: Download release tool
         run: |
-          wget -q https://drive.google.com/file/d/1MUMEI83hjuJsjoPVRJls3tIgysBGwCI8/view?usp=share_link -O release.zip
+          wget -q https://github.com/tomodian/release/releases/download/0.13.0/release_linux_amd64.zip -O release.zip
           unzip release.zip
 
       - name: Extract Docker metadata
