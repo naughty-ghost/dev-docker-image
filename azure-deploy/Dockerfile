@@ -32,5 +32,5 @@ RUN apt-get update && \
       docker==${DOCKER_ENGINE} \
       docker-compose==${DOCKER_COMPOSE} && \
   echo "Install AZURE CLI" && \
-    pip --no-cache-dir install awscli==${AZURE_CLI} && \
+    pip --no-cache-dir install azure-cli==${AZURE_CLI} && \
   apt-get clean
