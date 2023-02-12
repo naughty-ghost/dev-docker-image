@@ -4,6 +4,7 @@ ENV TERRAFORM_VERZION 1.3.6
 ENV ANSIBLE_VERSION 6.7.0
 ENV DOCKER_COMPOSE 1.29.2
 ENV DOCKER_ENGINE 6.0.1
+ENV AWS_CLI=1.27.69
 
 ENV PATH $PATH:/usr/local/bin/terraform
 
@@ -31,5 +32,5 @@ RUN apt-get update && \
       docker==${DOCKER_ENGINE} \
       docker-compose==${DOCKER_COMPOSE} && \
   echo "Install AWS CLI" && \
-    pip --no-cache-dir install awscli && \
+    pip --no-cache-dir install awscli==${AWS_CLI} && \
   apt-get clean
