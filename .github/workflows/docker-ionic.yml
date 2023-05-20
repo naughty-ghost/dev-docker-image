@@ -1,8 +1,11 @@
 name: docker.ionic
 
 on:
+  schedule:
+    # 毎週月曜日の9時(JST)に実行
+    - cron: "0 0 * * 1"
   push:
-    branches: 
+    branches:
       - main
     paths:
       - .github/workflows/docker-ionic.yml
@@ -13,7 +16,6 @@ env:
   REGISTRY: ghcr.io
   REPOSITORY: ${{ github.repository }}
   IMAGE: ionic
-
 
 jobs:
   build:

@@ -1,4 +1,4 @@
-FROM node:18-slim
+FROM ghcr.io/ms-naughty-ghost/dev-docker-image-nodejs:0.2.0
 
 RUN apt-get update && \
     apt-get upgrade -y && \
