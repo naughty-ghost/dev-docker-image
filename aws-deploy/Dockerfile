@@ -9,6 +9,7 @@ ENV AWS_CLI=1.27.69
 ENV PATH $PATH:/usr/local/bin/terraform
 
 RUN apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y \
     gnupg \
     software-properties-common \

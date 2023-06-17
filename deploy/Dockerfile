@@ -8,6 +8,7 @@ ENV DOCKER_ENGINE 6.0.1
 ENV PATH $PATH:/usr/local/bin/terraform
 
 RUN apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y \
     gnupg \
     software-properties-common \

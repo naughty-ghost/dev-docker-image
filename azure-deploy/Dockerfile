@@ -9,6 +9,7 @@ ENV AZURE_CLI=2.44.1
 ENV PATH $PATH:/usr/local/bin/terraform
 
 RUN apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y \
     gnupg \
     software-properties-common \
