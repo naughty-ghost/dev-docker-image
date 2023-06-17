@@ -1,6 +1,9 @@
 name: docker.azure-deploy
 
 on:
+  schedule:
+    # 毎週月曜日の0時(JST)に実行
+    - cron: "0 15 * * 0"
   push:
     branches:
       - main

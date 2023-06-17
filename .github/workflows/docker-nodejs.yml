@@ -2,8 +2,8 @@ name: docker.nodejs
 
 on:
   schedule:
-    # 毎週月曜日の8時(JST)に実行
-    - cron: "0 14 * * 0"
+    # 毎週月曜日の0時(JST)に実行
+    - cron: "0 15 * * 0"
   push:
     branches:
       - main

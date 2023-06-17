@@ -2,8 +2,8 @@ name: docker.ionic
 
 on:
   schedule:
-    # 毎週月曜日の9時(JST)に実行
-    - cron: "0 0 * * 1"
+    # 毎週月曜日の0時(JST)に実行
+    - cron: "0 15 * * 0"
   push:
     branches:
       - main
