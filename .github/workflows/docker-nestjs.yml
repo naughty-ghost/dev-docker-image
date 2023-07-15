@@ -53,9 +53,13 @@ jobs:
           wget -q https://github.com/ms-naughty-ghost/release-tool/releases/download/1.0.0/release-tool.zip -O release-tool.zip
           unzip release-tool.zip
 
-      - name: Extract Docker metadata
+      - name: Extract Docker tag from release-tool
         id: meta
         run: echo "tag=ghcr.io/$REPOSITORY-$IMAGE:$(./release-tool | tr -d '\n')" >> $GITHUB_OUTPUT
+      
+      - name: Extract Docker description from release-tool
+        id: description
+        run: echo "description=$(./release-tool -r ${{ steps.meta.outputs.tag }})" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
         run: |
@@ -63,4 +67,5 @@ jobs:
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
             --tag ${{ steps.meta.outputs.tag }} \
+            --label "org.opencontainers.image.description=${{ steps.meta.outputs.description}}" \
             --push .
