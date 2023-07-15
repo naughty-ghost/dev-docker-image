@@ -51,12 +51,12 @@ jobs:
 
       - name: Download release tool
         run: |
-          wget -q https://github.com/ms-naughty-ghost/release-tool/releases/download/1.0.0/release-tool.zip -O release.zip
-          unzip release.zip
+          wget -q https://github.com/ms-naughty-ghost/release-tool/releases/download/1.0.0/release-tool.zip -O release-tool
+          unzip release-tool
 
       - name: Extract Docker metadata
         id: meta
-        run: echo "tag=ghcr.io/$REPOSITORY-$IMAGE:$(./release latest --any | tr -d '\n')" >> $GITHUB_OUTPUT
+        run: echo "tag=ghcr.io/$REPOSITORY-$IMAGE:$(./release-tool | tr -d '\n')" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
         run: |
