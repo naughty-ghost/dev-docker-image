@@ -2,7 +2,7 @@ name: docker.mkcert
 
 on:
   push:
-    branches: 
+    branches:
       - main
     paths:
       - .github/workflows/docker-mkcert.yml
@@ -13,7 +13,6 @@ env:
   REGISTRY: ghcr.io
   REPOSITORY: ${{ github.repository }}
   IMAGE: mkcert
-
 
 jobs:
   build:
@@ -48,7 +47,7 @@ jobs:
 
       - name: Download release tool
         run: |
-          wget -q https://github.com/ms-naughty-ghost/release-tool/releases/download/1.0.0/release-tool.zip -O release-tool.zip
+          wget -q https://github.com/naughty-ghost/release-tool/releases/download/1.0.0/release-tool.zip -O release-tool.zip
           unzip release-tool.zip
 
       - name: Extract Docker metadata

@@ -4,14 +4,14 @@ https://github.com/FiloSottile/mkcert
 
 
 # pull
-[repository](https://github.com/ms-naughty-ghost/mkcert/pkgs/container/mkcert)  
+[repository](https://github.com/naughty-ghost/mkcert/pkgs/container/mkcert)  
 Pull image from the command line:
 ```
-docker pull ghcr.io/ms-naughty-ghost/mkcert:0.1.0
+docker pull ghcr.io/naughty-ghost/mkcert:0.1.0
 ```
 Use as base image in Dockerfile:
 ```
-FROM ghcr.io/ms-naughty-ghost/mkcert:0.1.0
+FROM ghcr.io/naughty-ghost/mkcert:0.1.0
 ```
 # usage
 `/home/user/mkcert-tool/Cert`は、保存したいパスに置き換える。`localhost`は発行したいドメインに置き換える。

@@ -5,7 +5,7 @@ on:
     # 毎週月曜日の0時(JST)に実行
     - cron: "0 15 * * 0"
   push:
-    branches: 
+    branches:
       - main
     paths:
       - .github/workflows/docker-aws-deploy.yml
@@ -16,7 +16,6 @@ env:
   REGISTRY: ghcr.io
   REPOSITORY: ${{ github.repository }}
   IMAGE: aws-deploy
-
 
 jobs:
   build:
@@ -51,7 +50,7 @@ jobs:
 
       - name: Download release tool
         run: |
-          wget -q https://github.com/ms-naughty-ghost/release-tool/releases/download/1.0.0/release-tool.zip -O release-tool.zip
+          wget -q https://github.com/naughty-ghost/release-tool/releases/download/1.0.0/release-tool.zip -O release-tool.zip
           unzip release-tool.zip
 
       - name: Extract Docker metadata
