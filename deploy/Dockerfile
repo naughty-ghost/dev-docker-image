@@ -28,6 +28,7 @@ RUN apt-get update && \
     if [ ! -e /usr/bin/python ]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
   echo "Install ansible" && \
     pip --no-cache-dir install \
+      PyYAML==5.3.1 \
       ansible==${ANSIBLE_VERSION} \
       docker==${DOCKER_ENGINE} \
       docker-compose==${DOCKER_COMPOSE} && \
