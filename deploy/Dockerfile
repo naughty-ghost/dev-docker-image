@@ -1,9 +1,7 @@
 FROM ubuntu:22.04
 
-ENV TERRAFORM_VERZION 1.4.6
-ENV ANSIBLE_VERSION 8.0.0
-ENV DOCKER_COMPOSE 1.29.2
-ENV DOCKER_ENGINE 6.0.1
+ENV TERRAFORM_VERZION 1.6.4
+ENV ANSIBLE_VERSION 9.0.1
 
 ENV PATH $PATH:/usr/local/bin/terraform
 
@@ -29,7 +27,14 @@ RUN apt-get update && \
   echo "Install ansible" && \
     pip --no-cache-dir install \
       PyYAML==5.3.1 \
-      ansible==${ANSIBLE_VERSION} \
-      docker==${DOCKER_ENGINE} \
-      docker-compose==${DOCKER_COMPOSE} && \
+      ansible==${ANSIBLE_VERSION} && \
+  echo "Install Docker Engine" && \
+    mkdir -m 0755 -p /etc/apt/keyrings && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+    chmod a+r /etc/apt/keyrings/docker.gpg && \
+    echo \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+    apt-get update && \
+    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
   apt-get clean
