@@ -1,9 +1,9 @@
 FROM ubuntu:22.04
 
-ENV TERRAFORM_VERZION 1.6.4
-ENV ANSIBLE_VERSION 9.0.1
+ENV TERRAFORM_VERZION=1.14.8
+ENV ANSIBLE_VERSION=13.5.0
 
-ENV PATH $PATH:/usr/local/bin/terraform
+ENV PATH=$PATH:/usr/local/bin/terraform
 
 RUN apt-get update && \
     apt-get upgrade -y && \
@@ -26,7 +26,7 @@ RUN apt-get update && \
     if [ ! -e /usr/bin/python ]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
   echo "Install ansible" && \
     pip --no-cache-dir install \
-      PyYAML==5.3.1 \
+      PyYAML==6.0.3 \
       ansible==${ANSIBLE_VERSION} && \
   echo "Install Docker Engine" && \
     mkdir -m 0755 -p /etc/apt/keyrings && \
