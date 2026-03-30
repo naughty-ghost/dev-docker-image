@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [0.4.0] - 2026-03-30
+### Changed
+- ubuntuからdebianに変更。
+
 ### Updated
 - terraformのバージョンを1.14.8に更新。
 - ansibleのバージョンを13.5.0に更新。
