@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] - 2023-01-02
 ### Added
-- ionic 開発用イメージ。
+- {actions} 開発用イメージ。
 ```
 
 ## docker-{actions}.yml
@@ -57,19 +57,19 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       # https://github.com/docker/setup-buildx-action
       - name: Setup Docker buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v4
       # https://github.com/docker/setup-qemu-action
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v4
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
-        uses: docker/login-action@v2
+        uses: docker/login-action@v4
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -77,19 +77,28 @@ jobs:
 
       - name: Download release tool
         run: |
-          wget -q https://github.com/naughty-ghost/release-tool/releases/download/1.0.0/release-tool.zip -O release-tool.zip
+          wget -q https://github.com/naughty-ghost/release-tool/releases/download/2.0.0/release-tool.zip -O release-tool.zip
           unzip release-tool.zip
 
       - name: Extract Docker metadata
         id: meta
-        run: echo "tag=ghcr.io/$REPOSITORY-$IMAGE:$(./release-tool | tr -d '\n')" >> $GITHUB_OUTPUT
+        run: |
+          echo "tag=ghcr.io/$REPOSITORY-$IMAGE:$(./release-tool | tr -d '\n')" >> $GITHUB_OUTPUT
+          {
+            echo "description<<EOF"
+            ./release-tool -r latest
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
+        env:
+          DESCRIPTION: ${{ steps.meta.outputs.description }}
         run: |
           docker buildx create --use
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
             --tag ${{ steps.meta.outputs.tag }} \
+            --label "org.opencontainers.image.description=${DESCRIPTION}" \
             --push .
 
 ```
