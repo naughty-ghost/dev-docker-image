@@ -77,7 +77,7 @@ jobs:
 
       - name: Download release tool
         run: |
-          wget -q https://github.com/naughty-ghost/release-tool/releases/download/2.0.0/release-tool.zip -O release-tool.zip
+          wget -q https://github.com/naughty-ghost/release-tool/releases/download/v2.0.0/release-tool.zip -O release-tool.zip
           unzip release-tool.zip
 
       - name: Extract Docker metadata
