@@ -98,7 +98,7 @@ jobs:
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
             --tag ${{ steps.meta.outputs.tag }} \
-            --label "org.opencontainers.image.description=${DESCRIPTION}" \
+            --annotation "index:org.opencontainers.image.description=${DESCRIPTION}" \
             --push .
 
 ```
