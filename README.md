@@ -8,7 +8,7 @@
 省略
 
 ## CHANGELOG.md
-https://keepachangelog.com/en/1.0.0/にしたがって記述します。
+[https://keepachangelog.com/en/1.0.0/](https://keepachangelog.com/en/1.0.0/)にしたがって記述します。
 
 以下に例を示します。
 ```
