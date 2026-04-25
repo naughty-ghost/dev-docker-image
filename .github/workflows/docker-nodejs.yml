@@ -7,6 +7,8 @@ on:
     paths:
       - .github/workflows/docker-nodejs.yml
       - nodejs/**
+  schedule:
+    - cron: '0 0 * * 0'
 
 env:
   # Format

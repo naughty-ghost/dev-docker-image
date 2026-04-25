@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-04-25
+### Updated
+- ベースイメージを `ubuntu:22.04` から `debian:trixie` に変更。
+- terraformのバージョンを1.14.9に更新。
+- ansibleのバージョンを13.6.0に更新。
+- AWS CLIのバージョンを1.44.86に更新。
+
 ## [0.4.0] - 2026-03-30
 ### Updated
 - terraformのバージョンを1.14.8に更新。

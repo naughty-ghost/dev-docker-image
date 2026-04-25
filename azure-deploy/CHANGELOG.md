@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-04-25
+### Updated
+- terraformのバージョンを1.14.9に更新。
+- ansibleのバージョンを13.6.0に更新。
+- Azure CLIのバージョンを2.85.0に更新。
+
 ## [0.4.0] - 2026-03-30
 ### Changed
 - ubuntuからdebianに変更。

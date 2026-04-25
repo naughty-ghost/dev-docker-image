@@ -7,6 +7,8 @@ on:
     paths:
       - .github/workflows/docker-mkcert.yml
       - mkcert/**
+  schedule:
+    - cron: '0 0 1 * *'
 
 env:
   # Format

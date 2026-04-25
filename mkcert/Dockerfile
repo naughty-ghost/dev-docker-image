@@ -1,5 +1,5 @@
 # コードを実行するコンテナイメージ
-FROM ubuntu:latest
+FROM debian:trixie
 
 WORKDIR /Cert
 RUN apt update && \

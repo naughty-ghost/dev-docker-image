@@ -1,8 +1,8 @@
-FROM ubuntu:22.04
+FROM debian:trixie
 
-ENV TERRAFORM_VERZION=1.14.8
-ENV ANSIBLE_VERSION=13.5.0
-ENV AWS_CLI=1.44.68
+ENV TERRAFORM_VERZION=1.14.9
+ENV ANSIBLE_VERSION=13.6.0
+ENV AWS_CLI=1.44.86
 
 ENV PATH=$PATH:/usr/local/bin/terraform
 
@@ -10,7 +10,6 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
     gnupg \
-    software-properties-common \
     curl \
     ca-certificates \
     apt-transport-https \
@@ -26,17 +25,17 @@ RUN apt-get update && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip; fi && \
     if [ ! -e /usr/bin/python ]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
   echo "Install ansible" && \
-    pip --no-cache-dir install \
+    pip --no-cache-dir install --break-system-packages \
       PyYAML==6.0.3 \
       ansible==${ANSIBLE_VERSION} && \
   echo "Install AWS CLI" && \
-    pip --no-cache-dir install awscli==${AWS_CLI} && \
+    pip --no-cache-dir install --break-system-packages awscli==${AWS_CLI} && \
   echo "Install Docker Engine" && \
     mkdir -m 0755 -p /etc/apt/keyrings && \
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
     chmod a+r /etc/apt/keyrings/docker.gpg && \
     echo \
-        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
         $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
     apt-get update && \
     apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
